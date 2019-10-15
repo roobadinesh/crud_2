@@ -7,7 +7,16 @@ import { Table } from "antd";
 export default class Table1  extends Component{
     
     render(){
-        
+      // console.log(localStorage.getItem('Name'));
+      let name = localStorage.getItem('name')
+      let age = localStorage.getItem('age')
+      let gender = localStorage.getItem('gender')
+      let mobile = localStorage.getItem('phoneNo')
+      let address = localStorage.getItem('address')
+
+
+
+      // console.log(Name,"name1")
 const columns = [
     {
       title: "Name",
@@ -45,11 +54,11 @@ const columns = [
   const data = [
     {
       key: "1",
-      name: "Dinesh",
-      age: 23,
-      gender: "male",
-      mobile: "7639991310",
-      address: "New York No. 1 Lake Park"
+      name: name,
+      age: age,
+      gender: gender,
+      mobile: mobile,
+      address: address
     }
   ];
   
@@ -67,6 +76,9 @@ const columns = [
       name: record.name
     })
   };
+
+
+
         return(
             <div>
             <Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: true, }} />,

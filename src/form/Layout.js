@@ -2,6 +2,7 @@ import React, {Component}from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Modal, Button ,Card,Input,Radio,Row,Col,Table} from 'antd';
 import Table1 from './Table';
+import Formx from './Form'
 const { Header, Content, Footer, } = Layout;
 
 export default class Layout1  extends Component{
@@ -63,12 +64,7 @@ export default class Layout1  extends Component{
          
   
     <br/>
-      <header style = {headerStyle}>
-    <h1 style={{ 
-      color: '#FFFFFF'
-    }}>Contact form</h1>
-   
-  </header><div >
+  <div >
   <Card
      
     
@@ -76,22 +72,7 @@ export default class Layout1  extends Component{
        width:'auto',backgroundColor:'#f9f9f9' }}>       
        
 <br/>
-
-   <div >
-
-        Name : <Input placeholder=" "/><p></p> 
-        Age : <Input placeholder=" "/> <p></p>
-          Gender : <Radio value={1}>Male</Radio> <Radio value={2}>Female</Radio> <p></p>
-           Phone No : <Input pattern="{0-9}{10}"  max={10}/> <p></p>
-            Address : <Input placeholder=" "/> <p></p>
-    
-       <div style =
-       
-       {{ textAlign: 'center'}}>
-               
-      <Button type="Save">Save</Button> <Button type="Cancel">Cancel</Button> 
-      </div>    
-     </div>     
+<Formx />    
     </Card>    
    </div>
 
