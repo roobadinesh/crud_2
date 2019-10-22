@@ -8,7 +8,7 @@ let Business = require('./business.model');
 businessRoutes.route('/add').post(function (req, res) {
     console.log('jghvfhg',req.body)
 let obj = req.body.obj
-  let business = Business.create({person_name:obj.person_name,business_name:obj.business_name,business_gst_number:obj.business_gst_number}
+  let business = Business.create({name:obj.name,age:obj.age,mobile_no:obj.mobile_no,gender:obj.gender,address:obj.address}
     
     
     )
