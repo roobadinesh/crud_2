@@ -10,9 +10,9 @@ export default class Layout1  extends Component{
 
   showModal = () => {
     this.setState({
-      visible: true, 
+      visible: true,
     });
-  }; 
+  };
 
   handleOk = e => {
     console.log(e);
@@ -60,7 +60,6 @@ export default class Layout1  extends Component{
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-        
         >
           
   

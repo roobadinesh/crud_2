@@ -1,21 +1,24 @@
-import React from 'react';
-// import Header from './form/Form';
-import Layout1 from './form/Layout';
+import React, {Component}from 'react';
+import Layout from './form/Layout';
+import Form from './form/Form'
 import './App.css';
-import Table1 from './form/Table'
-import Localstorage from './form/Ls';
-import Form1 from './Form1';
+import Edit from './form/Edit'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function App() {
-  return (
+
+ export class  App extends Component {
+  render(){  return (
+    <Router>
     <div className="App">
-      
-      {/* <Header /> */}
-      <Layout1/>
-      {/* <Form1 /> */}
-      {/* <Localstorage/> */}
-            </div>
+    {/* <Form/> */}
+    {/* <Layout/>    */}
+    <Switch>
+              <Route exact path='/' component={ Layout } />
+              <Route path='/edit/:id' component={ Edit } />
+          </Switch>
+    </div>
+    </Router>
   );
-}
+}}
 
 export default App;

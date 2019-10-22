@@ -19,8 +19,8 @@ export class Form1 extends Component {
         localStorage.setItem('phone No', this.state.phoneno);
         localStorage.setItem('Address', this.state.address); 
         
-    }
-
+    } 
+  
     getdetails=()=>{
         console.log('uwgsdudvs')
         console.log(localStorage.getItem('Name'));

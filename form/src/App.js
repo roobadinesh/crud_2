@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+// import Header from './form/Form';
+import Layout1 from './Layout';
 import './App.css';
+// import Table1 from './Table'
+// import Localstorage from './form/Ls';
+import Form1 from './Form';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      
+      {/* <Header /> */}
+      <Layout1/>
+      {/* <Form1 /> */}
+      {/* <Localstorage/> */}
+            </div>
   );
 }
-
+  
 export default App;

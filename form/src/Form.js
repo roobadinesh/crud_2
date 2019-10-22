@@ -1,45 +1,23 @@
 import React, { Component } from 'react';
 import {Card,Input,Radio,Button,Row,Col,Form} from 'antd';
-import axios from 'axios';
-
 const plainOptions = ['Male', 'Female'];
 export default class Formx extends Component{ 
   constructor(props){ super(props)
   this.state={ name:'',age:'',phoneno:'',gender:'',address:''}
   
 }
-// formsubmit=()=>{
-//   // console.log(this.state.name,"name")
-//   console.log('sdcjdghchs')
-//   localStorage.setItem('name', this.state.name);
-//   localStorage.setItem('age', this.state.age); 
-//   localStorage.setItem('gender', this.state.gender);
-//   localStorage.setItem('phoneNo', this.state.phoneno);
-//   localStorage.setItem('address', this.state.address); 
+formsubmit=()=>{
+  // console.log(this.state.name,"name")
+  console.log('sdcjdghchs')
+  localStorage.setItem('name', this.state.name);
+  localStorage.setItem('age', this.state.age);
+  localStorage.setItem('gender', this.state.gender);
+  localStorage.setItem('phoneNo', this.state.phoneno);
+  localStorage.setItem('address', this.state.address); 
   
-// } 
-  
-onSubmit =async(e)=> {
-  e.preventDefault();
-  const obj = {
-    name: this.state.name,
-    age: this.state.age,
-   gender:this.state.gender,
-   mobile_no:this.state.phoneno,
-   address:this.state.address
-  };
-  console.log(obj,"form data")
- await axios.post('http://192.168.29.199:4000/business/add', {obj:obj})
-      .then(res => console.log(res.data,'res.data'));
-  
-  this.setState({
-    name: '',
-   age: '',
-    gender: '',
-    mobile_no:'',
-    address:''
-  })
-}
+} 
+
+
 getdetails=()=>{
   console.log('uwgsdudvs')
   console.log(localStorage.getItem('name'));
@@ -96,7 +74,7 @@ handlevalue(e){
        
        {{ textAlign: 'center'}}>
              
-               <Button type="Save" onClick={this.onSubmit}>Save</Button> <Button type="Cancel">Cancel</Button> 
+               <Button type="Save" onClick={this.formsubmit}>Save</Button> <Button type="Cancel">Cancel</Button> 
           {/* <br/> <Button type="Save" onClick={this.getdetails}>Get details</Button> */}
                 </div>    
      </div>     
