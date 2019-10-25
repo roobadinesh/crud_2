@@ -2,15 +2,17 @@ import React, {Component}from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Modal, Button ,Card,Input,Radio,Row,Col,Table} from 'antd';
 import Table1 from './Table';
-import Formx from './Form'
+import Formx from './Form';
+import Tablex from './Tablex'
 const { Header, Content, Footer, } = Layout;
 
 export default class Layout1  extends Component{
-  state = { visible: false };
+  state = { visible: false,name:'', age:'',gender:'',mobile_no:'',address:'',temp:{},isedit:false};
 
   showModal = () => {
     this.setState({
       visible: true, 
+    
     });
   }; 
 
@@ -20,6 +22,7 @@ export default class Layout1  extends Component{
       visible: false,
     });
   };
+  
 
   handleCancel = e => {
     console.log(e);
@@ -27,6 +30,24 @@ export default class Layout1  extends Component{
       visible: false,
     });
   };
+  dummyfunc= async (name,age,gender,mobile_no,address,isedit,_id) =>{
+    console.log("nameinlayout",name,age,gender,mobile_no,address,isedit)
+    let prod={
+      name:name,
+      age:age,
+      gender:gender,
+      mobile_no:mobile_no,
+      address:address,
+      id:_id
+    }
+    await this.setState({isedit:isedit})
+    await this.setState({temp:prod})
+    console.log(this.state.temp,"tempstate")
+    await this.setState({
+      visible: true, 
+    
+    });
+  }
 
   render(){
     return(
@@ -60,6 +81,7 @@ export default class Layout1  extends Component{
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          footer={null}
         
         >
           
@@ -73,7 +95,8 @@ export default class Layout1  extends Component{
        width:'auto',backgroundColor:'#f9f9f9' }}>       
        
 <br/>
-<Formx />    
+<Formx item={this.state.temp} visible={this.state.favclicked} isedit={this.state.isedit} 
+/>    
     </Card>    
    </div>
 
@@ -82,7 +105,7 @@ export default class Layout1  extends Component{
       </Breadcrumb>
       <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
 
-        <Table1 />
+        <Tablex style={{overflowX:'scroll'}} dummy={this.dummyfunc} />
       </div>
     </Content>
     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
@@ -97,3 +120,6 @@ const headerStyle={
   textAlign:'center',
   padding: '2px'
  } 
+
+
+ 

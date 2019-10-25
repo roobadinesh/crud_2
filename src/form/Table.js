@@ -21,9 +21,13 @@ export default class Table1  extends Component{
         console.log(error);
       })
   }
+  delete() {
+    axios.get('http://localhost:4000/business/delete/'+this.props.obj)
+        .then(console.log('Deleted'))
+        .catch(err => console.log(err))
+}
 
-
-    render(){
+   render(){
   
     
       
@@ -62,15 +66,19 @@ const columns = [
         title: 'Action',
         dataIndex: '_id',
         render: (i) =>      
-               <Link to={"/edit/"+this.state.business.i._id} className="btn btn-primary">Edit</Link>
-        ,
+              //  <Link to="/edit/"+this.state.business.i._id} className="btn btn-primary">Edit</Link>
+              <a>Edit</a>,
+        
       },
       {
         title: 'Action',
         dataIndex: '',
         key: 'x',
-        render: () => <a>Delete</a>,
+        render: () => 
+        <button type="submit" onClick={e => this.delete(e)} >Delete</button>
+      
       },
+      
   ];
 //   const data = [
 //     {

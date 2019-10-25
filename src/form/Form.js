@@ -5,7 +5,7 @@ import axios from 'axios';
 const plainOptions = ['Male', 'Female'];
 export default class Formx extends Component{ 
   constructor(props){ super(props)
-  this.state={ name:'',age:'',phoneno:'',gender:'',address:''}
+  this.state={ name:'',age:'',mobile_no:'',gender:'',address:''}
   
 }
 // formsubmit=()=>{
@@ -20,18 +20,39 @@ export default class Formx extends Component{
 // } 
   
 onSubmit =async(e)=> {
+  if(this.props.isedit == true){
+    const obj = {
+      name: this.state.name,
+      age: this.state.age,
+     gender:this.state.gender,
+     mobile_no:this.state.mobile_no,
+     address:this.state.address
+    };
+    
+    axios.put('http://localhost:4000/business/update/'+this.props.item.id,{obj:obj})
+    .then(console.log('Edited'))
+    .catch(err => console.log(err))
+    this.setState({
+      name: '',
+     age: '',
+      gender: '',
+      mobile_no:'',
+      address:''
+    })
+  }
+  else{
   e.preventDefault();
   const obj = {
     name: this.state.name,
     age: this.state.age,
    gender:this.state.gender,
-   mobile_no:this.state.phoneno,
+   mobile_no:this.state.mobile_no,
    address:this.state.address
   };
   console.log(obj,"form data")
  await axios.post('http://192.168.29.199:4000/business/add', {obj:obj})
       .then(res => console.log(res.data,'res.data'));
-  
+      window.location.reload()
   this.setState({
     name: '',
    age: '',
@@ -39,6 +60,12 @@ onSubmit =async(e)=> {
     mobile_no:'',
     address:''
   })
+}
+}
+async componentDidMount(){
+  console.log(this.props.item,"itemsentby props")
+  await this.setState({name:this.props.item.name, age:this.props.item.age, gender:this.props.item.gender, mobile_no:this.props.item.mobile_no,address:this.props.item.address})
+
 }
 getdetails=()=>{
   console.log('uwgsdudvs')
@@ -54,10 +81,16 @@ handlevalue(e){
   this.setState({[e.target.name]:e.target.value})
   console.log(this.state.name,"sinker")
   console.log(this.state.age,"2")
-  console.log(this.state.phoneno,"3")
+  console.log(this.state.mobile_no,"3")
   console.log(this.state.gender,"4")
-
+  
 }
+handleCancel = e => {
+  console.log(e);
+  this.setState({
+    visible: false,
+  });
+};
 
   render()
 
@@ -88,15 +121,15 @@ handlevalue(e){
 
             Name : <Input type="text" value={this.state.name}name="name"onChange ={this.handlevalue.bind(this)}/><p></p> 
              Age : <Input name="age" value={this.state.age } onChange ={this.handlevalue.bind(this)}/> <p></p>
-              Gender : <Radio.Group options={plainOptions} name="gender"onChange ={this.handlevalue.bind(this)}/><p></p>
-               Phone No : <Input pattern="{0-9}{10}" name="phoneno" max={10} onChange ={this.handlevalue.bind(this)}/> <p></p>
+              Gender : <Radio.Group value={this.state.gender } options={plainOptions} name="gender"onChange ={this.handlevalue.bind(this)}/><p></p>
+               Phone No : <Input value={this.state.mobile_no} pattern="{0-9}{10}" name="mobile_no" max={10} onChange ={this.handlevalue.bind(this)}/> <p></p>
                 Address : <Input name="address" value={this.state.address} onChange={this.handlevalue.bind(this)}/> <p></p>
         
        <div style =
        
        {{ textAlign: 'center'}}>
              
-               <Button type="Save" onClick={this.onSubmit}>Save</Button> <Button type="Cancel">Cancel</Button> 
+               <Button type="Save" onClick={this.onSubmit}>Save</Button> <Button type="Cancel" onClick={this.handleCancel} >Cancel</Button> 
           {/* <br/> <Button type="Save" onClick={this.getdetails}>Get details</Button> */}
                 </div>    
      </div>     

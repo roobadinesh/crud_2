@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
     {/* <Layout/>    */}
     <Switch>
               <Route exact path='/' component={ Layout } />
-              <Route path='/edit/:id' component={ Edit } />
+              {/* <Route path='/edit/:id' component={ Edit } /> */}
           </Switch>
     </div>
     </Router>
