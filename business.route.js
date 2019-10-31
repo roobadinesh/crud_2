@@ -44,14 +44,20 @@ businessRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-businessRoutes.route('/update/:id').post(function (req, res) {
+businessRoutes.route('/update/:id').put(function (req, res) {
     Business.findById(req.params.id, function(err, business) {
+      
     if (!business)
       res.status(404).send("data is not found");
     else {
-        business.person_name = req.body.person_name;
-        business.business_name = req.body.business_name;
-        business.business_gst_number = req.body.business_gst_number;
+      const obj=req.body.obj
+        business.name = obj.name;
+        business.age = obj.age;
+        business.gender = obj.gender;
+        business.mobile_no = obj.mobile_no;
+        business.address = obj.address;
+      
+
 
         business.save().then(business => {
           res.json('Update complete');
@@ -64,7 +70,7 @@ businessRoutes.route('/update/:id').post(function (req, res) {
 });
 
 // Defined delete | remove | destroy route
-businessRoutes.route('/delete/:id').get(function (req, res) {
+businessRoutes.route('/delete/:id').delete(function (req, res) {
     Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
         if(err) res.json(err);
         else res.json('Successfully removed');
